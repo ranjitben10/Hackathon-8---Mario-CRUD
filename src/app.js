@@ -43,7 +43,7 @@ app.get("/mario", async (req, res) => {
   // })
 });
 
-app.get("/mario/:id", (req, res) => {
+app.get("/mario/:id", async (req, res) => {
   const id = req.params.id;
   try{
     res.send(await marioModel.findById(id));
@@ -66,7 +66,7 @@ app.get("/mario/:id", (req, res) => {
     // }
   });
 const isNullOrUndefined = val => val === null || val === undefined;
-app.post("/mario", (req, res) => {
+app.post("/mario", async (req, res) => {
   const newMario = req.body;
   if(isNullOrUndefined(newMario.name) || isNullOrUndefined(newMario.weight))
   {
@@ -95,7 +95,7 @@ app.post("/mario", (req, res) => {
   // });
 });
 
-app.patch('/mario/:id',(req,res)=>{
+app.patch('/mario/:id',async (req,res)=>{
   const id = req.params.id;
   const newMario = req.body;
   try{
@@ -132,7 +132,7 @@ app.patch('/mario/:id',(req,res)=>{
   // })
 })
 
-app.delete('/mario/:id',(req,res)=>{
+app.delete('/mario/:id', async (req,res)=>{
   const id = req.params.id;
   try{
     await marioModel.findById(id);
